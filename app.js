@@ -4,6 +4,10 @@ var client_id = "a428d61e295b4760895eba6c441c8f32";
 var client_secret = "9196b954bd074c4c8e50aa7c544f3696";
 
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
+const TOP = "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=5&offset=0"
+const TRACK = "https://api.spotify.com/v1/recommendations?"
+const TOKEN = "https://accounts.spotify.com/api/token";
+
 function onPageLoad(){
     if (window.location.search.length > 0){
         handleRedirect();
@@ -32,7 +36,7 @@ function requestAuthorization(){
     url += "&response_type=code";
     url += "&redirect_uri=" + encodeURI(redirect_uri);
     url += "&show_dialog=true";
-    url += "&scope=user-read-private user-read-email user-modify-playback-state user-read-playback-position user-library-read streaming user-read-playback-state user-read-recently-played playlist-read-private";
+    url += "&scope=user-read-private user-read-email user-modify-playback-state user-read-playback-position user-library-read streaming user-read-playback-state user-read-recently-played playlist-read-private user-top-read";
     window.location.href = url;
 }
 
@@ -93,9 +97,29 @@ function callApi(method, url, body, callback){
 }
 
 function getListenedSongs(){
-    callApi("GET", ME + TOP,null)
+    callApi("GET", TOP, null, handleListenedSongsResponse)
 }
 
 function handleListenedSongsResponse(){
+    if ( this.status == 200 ){
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        stringOfSongs = "";
+        for (let i = 0; i < data.items.length; i++) {
+            data.items.id
+          }
+    }
+    else if ( this.status == 401 ){
+        refreshAccessToken();
+    }
+    else {
+        console.log(this.responseText);
+        alert(this.responseText);
+    }
+}
 
+function getCompatibleSongs(item){
+    //console.log(item.id);
+    item = item.id;
+    callApi("GET", TRACK + item, null, checkSongCompatibility)
 }
