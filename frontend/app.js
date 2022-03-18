@@ -1,4 +1,4 @@
-var redirect_uri = "http://127.0.0.1:5500/index.html"
+var redirect_uri = "http://127.0.0.1:5500/frontend/index.html"
 
 var client_id = "a428d61e295b4760895eba6c441c8f32";
 var client_secret = "9196b954bd074c4c8e50aa7c544f3696";
