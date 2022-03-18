@@ -29,21 +29,9 @@ def getToken(code):
         "client_id": CLIENT_ID,
         "client_secret": CLIENT_SECRET
         }
-    '''body = 
-    body += "&code=" + code; 
-    body += "&redirect_uri=" + redirect_uri
-    body += "&client_id=" + CLIENT_ID
-    body += "&client_secret=" + CLIENT_SECRET
-'''
     base64encoded = base64.b64encode(f'{CLIENT_ID}:{CLIENT_SECRET}'.encode('ascii'))
     headers = {'Authorization': 'Basic {}'.format(base64encoded.decode('ascii'))}
     return requests.post(TOKEN, data = data, headers=headers).json()
-'''function fetchAccessToken( code ){
-    let body = "grant_type=authorization_code";
-    body += "&code=" + code; 
-    body += "&redirect_uri=" + encodeURI(redirect_uri);
-    body += "&client_id=" + client_id;
-    body += "&client_secret=" + client_secret;
-    callAuthorizationApi(body);'''
+
 if __name__ == "__main__":
     app.run(debug=True)
