@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import MySlider from './components/mySlider';
+import MyButton from './components/button';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+document.body.classList.add(window.onload="onLoad()")
 root.render(
   <React.StrictMode>
-    <App />
+    <MySlider name='Danceability'/>
+    <MySlider name='Speechiness'/>
+    <MySlider name='Instrumentalness'/>
+    <MySlider name='Happiness'/>
+    <MySlider name='Energy'/>
+    <MyButton/>
   </React.StrictMode>
 );
 
