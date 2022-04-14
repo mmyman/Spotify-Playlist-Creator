@@ -1,23 +1,19 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import { Slider } from '@mui/material';
 
-import { Slider} from '@mui/material'
-function MySlider(props) {
-    const [val,setVal]=useState([0,100])
-    const updateRange=(e,data) =>{
-        setVal(data)
-    }
+class MySlider extends Component {
+    render() { 
         return (
-            <div className={props.name} style={{width:300, margin:30}}>
-                <h1>{props.name}</h1>
-                <Slider
-                value={val}
-                onChange={updateRange}
+            <div className={this.props.name} style={{width:300, margin:30}}>
+            <h1>{this.props.name}</h1>
+            <Slider
+                value={this.props.val}
+                onChange={this.props.onChange}
                 valueLabelDisplay='auto'
-                />
+            />
             </div>
-            
-        );
-    
+            );
+    }
 }
  
 export default MySlider;

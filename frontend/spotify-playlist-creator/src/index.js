@@ -4,20 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import MySlider from './components/mySlider';
-import MyButton from './components/button';
+import SignInButton from './components/signInButton';
+import CreatePlaylistButton from './components/createPlaylistButton';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 document.body.classList.add(window.onload="onLoad()")
 root.render(
-  <React.StrictMode>
-    <MySlider name='Danceability'/>
+  <React.StrictMode> 
+    <CreatePlaylistButton/>
+    <SignInButton/>
+  </React.StrictMode>
+);
+/*
+
+<MySlider name='Danceability'/>
     <MySlider name='Speechiness'/>
     <MySlider name='Instrumentalness'/>
     <MySlider name='Happiness'/>
     <MySlider name='Energy'/>
-    <MyButton/>
-  </React.StrictMode>
-);
+*/
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
