@@ -9,23 +9,18 @@ function CreatePlaylistButton(){
     const [energyVal,setEnergy]=useState([0,100])
     const updateDance=(e,data) =>{
         setDance(data)
-        console.log(danceVal)
     }
     const updateSpeech=(e,data) =>{
         setSpeech(data)
-        console.log(speechVal)
     }
     const updateInst=(e,data) =>{
         setInst(data)
-        console.log(instVal)
     }
     const updateHappy=(e,data) =>{
         setHappy(data)
-        console.log(happyVal)
     }
     const updateEnergy=(e,data) =>{
         setEnergy(data)
-        console.log(energyVal)
     }
 
         return (
@@ -52,7 +47,10 @@ function CreatePlaylistButton(){
                 />
                 <Button
                  onClick={() => {
-                    
+                    let url = 'http://localhost:5000/create-playlist?minDance='+danceVal[0]+'&maxDance='+danceVal[1]+'&minSpeech='+speechVal[0]+'&maxSpeech='+speechVal[1]+'&minInst='+instVal[0]+'&maxInst='+instVal[1]+'&minHappy='+happyVal[0]+'&maxHappy='+happyVal[1]+'&minEnergy='+energyVal[0]+'&maxEnergy='+energyVal[1]+'&auth='+localStorage.getItem('token')
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("GET", url, true);
+                    xhr.send()
                  }}
                 color='secondary'
                 variant='contained'>

@@ -1,8 +1,9 @@
 import base64
 from re import X
+import re
 from flask import Flask, redirect, request
 import requests
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 redirect_uri = "http://127.0.0.1:5500/frontend/index.html"
 
 CLIENT_ID = "a428d61e295b4760895eba6c441c8f32"
@@ -11,6 +12,9 @@ TOKEN = "https://accounts.spotify.com/api/token"
 AUTHORIZE = "https://accounts.spotify.com/authorize"
 RECOMEND = "https://api.spotify.com/v1/recommendations"
 TOP_TRACKS = 'https://api.spotify.com/v1/me/top/tracks'
+ME = 'https://api.spotify.com/v1/me'
+CREATE_PLAYLIST = 'https://api.spotify.com/v1/users/'
+ADD_SONGS = 'https://api.spotify.com/v1/playlists/'
 app = Flask(__name__)
 CORS(app)
 # Allow requests only from your web app's domain or the development server.
@@ -27,27 +31,35 @@ def signIn():
     url += "&response_type=code"
     url += "&redirect_uri=" + redirect_uri
     url += "&show_dialog=true"
-    url += "&scope=user-read-recently-played playlist-read-private"
+    url += "&scope=user-read-recently-played playlist-modify-public"
     return redirect(url)
 
 
 @app.route('/get-token/<code>')
 def getToken(code):
-    data = {
+    '''data = {
         "grant_type": "authorization_code",
         "code": code,
         "redirect_uri": redirect_uri,
         "client_id": CLIENT_ID,
         "client_secret": CLIENT_SECRET
+    }'''
+    data = {
+        "grant_type": "refresh_token",
+        "refresh_token": 'AQDOcSuXQ4UW78PrJ4Fb8kFTHonEmZ5PemYqnivRWudrghOheqP_1PwxwAIYhI48wihUpZx-nZksj7F9i5Zrak39hQvFtWjQgdT-QEk7Zd054UzZU__peIpr6wrgYnUo-Fk'
+
     }
     base64encoded = base64.b64encode(
         f'{CLIENT_ID}:{CLIENT_SECRET}'.encode('ascii'))
     headers = {'Authorization': 'Basic {}'.format(
         base64encoded.decode('ascii'))}
-    return requests.post(TOKEN, params=data, headers=headers).json()
+    x = requests.post(TOKEN, data=data, headers=headers).json()
+    print(x)
+    return x
 
 
 @app.route('/create-playlist')
+@cross_origin(origin='localhost')
 def getRec():
 
     data = {
@@ -62,24 +74,51 @@ def getRec():
         "max_happiness": request.args.get('maxHappy'),
         "min_energy": request.args.get('minEnergy'),
         "max_energy": request.args.get('maxEnergy'),
-        "seed_artists": getSeedArtist(request.args.get('auth'))
+        "seed_artists": getSeedArtist()
 
     }
 
     headers = {'Authorization': 'Bearer '+request.args.get(
         'auth'), 'Accept': 'application/json'}
+    response_data = requests.get(
+        RECOMEND, params=data, headers=headers).json()['tracks']
+    tracks = []
+    for x in range(len(response_data)):
+        tracks.append(response_data[x]['uri'])
 
-    return requests.get(RECOMEND, params=data, headers=headers).json()
+    return makePlaylist(tracks)
 
 
-def getSeedArtist(auth):
+def makePlaylist(tracks):
+
+    headers = {'Authorization': 'Bearer '+request.args.get(
+        'auth'), 'Accept': 'application/json'}
+
+    id = str(requests.get(ME, headers=headers).json()['id'])
+    print(id)
+    url = CREATE_PLAYLIST + id + '/playlists'
+    createData = {
+        "name": 'Vibify'
+    }
+    plist_id = str(requests.post(url, json=createData,
+                   headers=headers).json()['id'])
+
+    addSongsData = {
+        "uris": tracks
+    }
+    return requests.post(ADD_SONGS + plist_id + '/tracks', json=addSongsData, headers=headers).json()
+
+
+def getSeedArtist():
     data = {
         "limit": '5',
         "time_range": 'short_term'
     }
-    headers = {'Authorization': 'Bearer '+auth, 'Accept': 'application/json'}
+    headers = {'Authorization': 'Bearer ' +
+               request.args.get('auth'), 'Accept': 'application/json'}
 
     results = requests.get(TOP_TRACKS, params=data, headers=headers).json()
+    print(request.args.get('auth'))
     artists = ''
     for x in range(5):
         artists += str(results['items'][x]['artists'][0]['id'])
