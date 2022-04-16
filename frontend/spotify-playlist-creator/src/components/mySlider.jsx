@@ -13,7 +13,7 @@ class MySlider extends Component {
             />
             </div>
             );
-    }
+    }z
 }
- 
+
 export default MySlider;
