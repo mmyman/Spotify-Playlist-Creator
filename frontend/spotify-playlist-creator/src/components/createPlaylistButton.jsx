@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import MySlider from './mySlider';
 import { Button } from '@mui/material';
 function CreatePlaylistButton(){
-    const [danceVal,setDance]=useState([0,100])
-    const [speechVal,setSpeech]=useState([0,100])
-    const [instVal,setInst]=useState([0,100])
-    const [happyVal,setHappy]=useState([0,100])
-    const [energyVal,setEnergy]=useState([0,100])
+    const [danceVal,setDance]=useState(100)
+    const [speechVal,setSpeech]=useState(100)
+    const [instVal,setInst]=useState(100)
+    const [happyVal,setHappy]=useState(100)
+    const [energyVal,setEnergy]=useState(100)
     const updateDance=(e,data) =>{
         setDance(data)
     }
@@ -47,7 +47,7 @@ function CreatePlaylistButton(){
                 />
                 <Button
                  onClick={() => {
-                    let url = 'http://localhost:5000/create-playlist?minDance='+danceVal[0]+'&maxDance='+danceVal[1]+'&minSpeech='+speechVal[0]+'&maxSpeech='+speechVal[1]+'&minInst='+instVal[0]+'&maxInst='+instVal[1]+'&minHappy='+happyVal[0]+'&maxHappy='+happyVal[1]+'&minEnergy='+energyVal[0]+'&maxEnergy='+energyVal[1]+'&auth='+localStorage.getItem('token')
+                    let url = 'http://localhost:5000/create-playlist?&maxDance='+danceVal+'&maxSpeech='+speechVal+'&maxInst='+instVal+'&maxHappy='+happyVal+'&maxEnergy='+energyVal+'&auth='+localStorage.getItem('token')
                     let xhr = new XMLHttpRequest();
                     xhr.open("GET", url, true);
                     xhr.send()

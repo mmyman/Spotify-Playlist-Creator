@@ -59,20 +59,14 @@ def getToken(code):
 
 
 @app.route('/create-playlist')
-@cross_origin(origin='localhost')
 def getRec():
 
     data = {
         "limit": '50',
-        "min_danceability": request.args.get('minDance'),
         "max_danceability": request.args.get('maxDance'),
-        "min_speechiness": request.args.get('minSpeech'),
         "max_speechiness": request.args.get('maxSpeech'),
-        "min_instrumentalness": request.args.get('minInst'),
         "max_intrumentalness": request.args.get('maxInst'),
-        "min_happiness": request.args.get('minHappy'),
         "max_happiness": request.args.get('maxHappy'),
-        "min_energy": request.args.get('minEnergy'),
         "max_energy": request.args.get('maxEnergy'),
         "seed_artists": getSeedArtist()
 

@@ -39,7 +39,7 @@ function handleRedirect(){
     xhttp.open("GET", BACKEND + "get-token/" + code, true);
     xhttp.onload = function() {
         localStorage.setItem('token',JSON.parse(xhttp.responseText).access_token);
-        console.log(localStorage.get('token'))
+        console.log(localStorage.getItem('token'))
       }
     xhttp.send()
     //fetchAccessToken(localStorage.getItem('token'));
