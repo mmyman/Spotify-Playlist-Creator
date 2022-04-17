@@ -42,7 +42,6 @@ function handleRedirect(){
         console.log(localStorage.getItem('token'))
       }
     xhttp.send()
-    //fetchAccessToken(localStorage.getItem('token'));
     window.history.pushState("", "", redirect_uri); // remove param from url
 }
 function getCode(){

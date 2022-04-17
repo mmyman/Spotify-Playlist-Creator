@@ -31,22 +31,30 @@ def signIn():
     url += "&response_type=code"
     url += "&redirect_uri=" + redirect_uri
     url += "&show_dialog=true"
-    url += "&scope=user-read-recently-played playlist-modify-public"
+    url += "&scope=user-read-recently-played playlist-modify-public user-top-read"
     return redirect(url)
 
 
 @app.route('/get-token/<code>')
 def getToken(code):
-    '''data = {
+    data = {
         "grant_type": "authorization_code",
         "code": code,
         "redirect_uri": redirect_uri,
-        "client_id": CLIENT_ID,
-        "client_secret": CLIENT_SECRET
-    }'''
+    }
+    base64encoded = base64.b64encode(
+        f'{CLIENT_ID}:{CLIENT_SECRET}'.encode('ascii'))
+    headers = {'Authorization': 'Basic {}'.format(
+        base64encoded.decode('ascii'))}
+    x = requests.post(TOKEN, data=data, headers=headers).json()
+    print('====================='+str(x))
+    return refreshToken(x['refresh_token'])
+
+
+def refreshToken(token):
     data = {
         "grant_type": "refresh_token",
-        "refresh_token": 'AQDOcSuXQ4UW78PrJ4Fb8kFTHonEmZ5PemYqnivRWudrghOheqP_1PwxwAIYhI48wihUpZx-nZksj7F9i5Zrak39hQvFtWjQgdT-QEk7Zd054UzZU__peIpr6wrgYnUo-Fk'
+        "refresh_token": token
 
     }
     base64encoded = base64.b64encode(
@@ -74,6 +82,7 @@ def getRec():
 
     headers = {'Authorization': 'Bearer '+request.args.get(
         'auth'), 'Accept': 'application/json'}
+
     response_data = requests.get(
         RECOMEND, params=data, headers=headers).json()['tracks']
     tracks = []
@@ -110,9 +119,10 @@ def getSeedArtist():
     }
     headers = {'Authorization': 'Bearer ' +
                request.args.get('auth'), 'Accept': 'application/json'}
+    x = requests.get(TOP_TRACKS, params=data, headers=headers)
+    print('====================================================================='+str(x))
+    results = x.json()
 
-    results = requests.get(TOP_TRACKS, params=data, headers=headers).json()
-    print(request.args.get('auth'))
     artists = ''
     for x in range(5):
         artists += str(results['items'][x]['artists'][0]['id'])
