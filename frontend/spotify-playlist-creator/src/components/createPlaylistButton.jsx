@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MySlider from './mySlider';
 import { Button } from '@mui/material';
+import './sliderDiv.css'
 function CreatePlaylistButton(){
     const [danceVal,setDance]=useState(100)
     const [speechVal,setSpeech]=useState(100)
@@ -24,7 +25,7 @@ function CreatePlaylistButton(){
     }
 
         return (
-            <div style={{width:300, margin:30}}>
+            <div className='center'>
                 <MySlider name='Danceability'
                 onChange={updateDance}
                 val = {danceVal}

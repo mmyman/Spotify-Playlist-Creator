@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Button} from'@mui/material'
 var redirect_uri = "http://127.0.0.1:5500/frontend/index.html"
-var client_id = "a428d61e295b4760895eba6c441c8f32";
-var client_secret = "9196b954bd074c4c8e50aa7c544f3696";
 const BACKEND = "http://127.0.0.1:5000/";
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
 const TOKEN = "https://accounts.spotify.com/api/token";
@@ -20,10 +18,8 @@ class SignInButton extends Component {
         return (
             <div style={{width:300, margin:30}}>
                 <Button
-                 onClick={() => {
-                    window.location.href =" http://127.0.0.1:5000/sign-in";
-                 }}
-                color='success'
+                 onClick={this.props.onClick}
+                color='secondary'
                 variant='contained'>
                 Sign In
                 </Button>

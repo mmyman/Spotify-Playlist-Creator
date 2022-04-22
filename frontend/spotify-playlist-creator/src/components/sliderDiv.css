@@ -1,0 +1,10 @@
+.sliderDiv{
+    margin-left: 200;
+    margin-right: 200;
+    margin-top: 5;
+    margin-bottom: 5;
+}
+.slider{
+    border-radius: 20px;
+    background-color: #181818;
+}

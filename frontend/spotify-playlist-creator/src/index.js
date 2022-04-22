@@ -6,13 +6,28 @@ import reportWebVitals from './reportWebVitals';
 import MySlider from './components/mySlider';
 import SignInButton from './components/signInButton';
 import CreatePlaylistButton from './components/createPlaylistButton';
-
+import { createTheme } from '@mui/material/styles';
+import { ThemeContext, ThemeProvider } from '@emotion/react';
+import PageManager from './components/pageManager';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 document.body.classList.add(window.onload="onLoad()")
+document.body.style.backgroundColor = "black"
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1ED760',
+    },
+    secondary: {
+      main: '#FFFFFF'
+    }
+  }
+});
+
 root.render(
   <React.StrictMode> 
-    <CreatePlaylistButton/>
-    <SignInButton/>
+    <ThemeProvider theme={theme}>
+      <PageManager/>
+    </ThemeProvider>
   </React.StrictMode>
 );
 /*
