@@ -7,4 +7,10 @@
 .slider{
     border-radius: 20px;
     background-color: #181818;
+    padding: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
+
