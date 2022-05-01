@@ -100,9 +100,15 @@ def makePlaylist(tracks):
     id = str(requests.get(ME, headers=headers).json()['id'])
     print(id)
     url = CREATE_PLAYLIST + id + '/playlists'
-    createData = {
-        "name": 'Vibify'
-    }
+    if request.args.get('name') == '':
+        createData = {
+            "name": 'Vibify'
+        }
+    else:
+        createData = {
+            "name": request.args.get('name')
+        }
+
     plist_id = str(requests.post(url, json=createData,
                    headers=headers).json()['id'])
 

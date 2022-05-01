@@ -11,6 +11,7 @@ function NameEntry(props){
             value= {props.val}
             onChange= {props.onChange}
             color='primary'
+            autoComplete='off'
             style={{
                 backgroundColor: "#181818"
             }}

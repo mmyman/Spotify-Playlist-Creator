@@ -29,7 +29,7 @@ function CreatePlaylistButton(){
 
     const [textInput, setTextInput] = useState('');
 
-    const handleTextInputChange = event => {
+    const handleTextInputChange = (event) => {
         setTextInput(event.target.value);
     };
 
@@ -60,7 +60,8 @@ function CreatePlaylistButton(){
         />
         <Button
          onClick={() => {
-            let url = 'http://localhost:5000/create-playlist?&maxDance='+danceVal+'&maxSpeech='+speechVal+'&maxInst='+instVal+'&maxHappy='+happyVal+'&maxEnergy='+energyVal+'&auth='+localStorage.getItem('token')
+            let url = 'http://localhost:5000/create-playlist?&maxDance='+danceVal+'&maxSpeech='+speechVal+'&maxInst='+instVal+'&maxHappy='+happyVal+'&maxEnergy='
+                +energyVal+'&auth='+localStorage.getItem('token')+'&name='+textInput;
             let xhr = new XMLHttpRequest();
             xhr.open("GET", url, true);
             xhr.send();
@@ -70,10 +71,12 @@ function CreatePlaylistButton(){
         variant='contained'>
         Calculate Playlist
         </Button>
-        <NameEntry>
-            onChange = {handleTextInputChange}
-            val = {textInput}
-        </NameEntry>
+        <NameEntry
+        onChange = {handleTextInputChange}
+        val = {textInput}
+        />
+            
+
     </div>   
     } else if(updatePage === 1){
         page = <p className = 'sliderName'>Playlist Created</p>
