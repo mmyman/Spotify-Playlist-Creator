@@ -10,8 +10,8 @@ import { createTheme } from '@mui/material/styles';
 import { ThemeContext, ThemeProvider } from '@emotion/react';
 import PageManager from './components/pageManager';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-document.body.classList.add(window.onload="onLoad()")
-document.body.style.backgroundColor = "black"
+document.body.classList.add(window.onload="onLoad()");
+document.body.style.backgroundColor = "black";
 const theme = createTheme({
   palette: {
     primary: {
@@ -24,11 +24,10 @@ const theme = createTheme({
 });
 
 root.render(
-  <React.StrictMode> 
+
     <ThemeProvider theme={theme}>
       <PageManager/>
     </ThemeProvider>
-  </React.StrictMode>
 );
 /*
 

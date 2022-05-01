@@ -4,7 +4,7 @@ import re
 from flask import Flask, redirect, request
 import requests
 from flask_cors import CORS, cross_origin
-redirect_uri = "http://127.0.0.1:5500/frontend/index.html"
+redirect_uri = "http://127.0.0.1:5500"
 
 CLIENT_ID = "a428d61e295b4760895eba6c441c8f32"
 CLIENT_SECRET = "9196b954bd074c4c8e50aa7c544f3696"
@@ -132,6 +132,5 @@ def getSeedArtist():
     return artists
 
 
-# http://localhost:5000/create-playlist?maxDance=.3&maxSpeech=.6&maxInst=.2&maxHappy=.6&maxEnergy=.3&auth=BQDjeMgI2NsjeKMO77kUw5m5_VZJLGHMwCJtJ5RAUN3qmhPoSqnEpLOnIWxGbTcp78Mzp17IM7HAJldIsgXuK10j91Sh1-GUAUnddjUFsshfg8NYIA7oYO4x_8fIDX0BhPvhOOgSlX19Hderv4hoKzolRAgz
 if __name__ == "__main__":
     app.run(debug=True)

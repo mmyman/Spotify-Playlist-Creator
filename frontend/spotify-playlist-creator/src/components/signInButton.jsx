@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button} from'@mui/material'
-var redirect_uri = "http://127.0.0.1:5500/frontend/index.html"
+var redirect_uri = "http://127.0.0.1:5500"
 const BACKEND = "http://127.0.0.1:5000/";
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
 const TOKEN = "https://accounts.spotify.com/api/token";
@@ -18,7 +18,7 @@ class SignInButton extends Component {
         return (
             <div style={{width:300, margin:30}}>
                 <Button
-                 onClick={this.props.onClick}
+                onClick={this.props.onClick}
                 color='secondary'
                 variant='contained'>
                 Sign In
@@ -37,7 +37,7 @@ function handleRedirect(){
         localStorage.setItem('token',JSON.parse(xhttp.responseText).access_token);
         console.log(localStorage.getItem('token'))
       }
-    xhttp.send()
+    xhttp.send();
     window.history.pushState("", "", redirect_uri); // remove param from url
 }
 function getCode(){
@@ -45,7 +45,7 @@ function getCode(){
     const queryString = window.location.search;
     if ( queryString.length > 0 ){
         const urlParams = new URLSearchParams(queryString);
-        code = urlParams.get('code')
+        code = urlParams.get('code');
     }
     return code;
 }
