@@ -10,17 +10,18 @@ function PageManager(){
 
     }
 
+
+
     let page;
     console.log(localStorage.getItem('signIn') );
     console.log(localStorage.getItem('token'));
     if (localStorage.getItem('signIn') == 'clicked' ){
-        setPageState(1);
+        //setPageState(1);
         localStorage.setItem('signIn', 'notClicked');
-
     }
 
     if (renderPageState === 0){
-        page = <SignInButton onClick = {handleSignIn}></SignInButton>
+        page = <SignInButton onClick = {handleSignIn} pageState = {setPageState}></SignInButton>
     } else if(renderPageState === 1){
         page = <CreatePlaylistButton></CreatePlaylistButton>
     }
@@ -30,7 +31,6 @@ function PageManager(){
                 {page}
             </div>
 
-            
         );
 }
 

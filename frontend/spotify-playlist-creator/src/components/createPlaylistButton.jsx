@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MySlider from './mySlider';
 import { Button } from '@mui/material';
 import './sliderDiv.css'
@@ -32,6 +32,8 @@ function CreatePlaylistButton(){
     const handleTextInputChange = event => {
         setTextInput(event.target.value);
     };
+
+
     let page;
 
     if(updatePage === 0){
