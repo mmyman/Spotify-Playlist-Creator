@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CreatePlaylistButton from './createPlaylistButton';
 import SignInButton from './signInButton';
+import './sliderDiv.css'
 function PageManager(){
     const [renderPageState,setPageState]=useState(0)
 
@@ -16,21 +17,24 @@ function PageManager(){
     console.log(localStorage.getItem('signIn') );
     console.log(localStorage.getItem('token'));
     if (localStorage.getItem('signIn') == 'clicked' ){
-        //setPageState(1);
         localStorage.setItem('signIn', 'notClicked');
     }
 
     if (renderPageState === 0){
-        page = <SignInButton onClick = {handleSignIn} pageState = {setPageState}></SignInButton>
+        page = <div className='logoContainer'>
+                <SignInButton onClick = {handleSignIn} pageState = {setPageState}></SignInButton>
+            </div>
+        
+        
     } else if(renderPageState === 1){
-        page = <CreatePlaylistButton></CreatePlaylistButton>
+        page = <div>
+                <CreatePlaylistButton></CreatePlaylistButton>
+            </div>
+
     }
 
         return (
-            <div>
-                {page}
-            </div>
-
+                page
         );
 }
 

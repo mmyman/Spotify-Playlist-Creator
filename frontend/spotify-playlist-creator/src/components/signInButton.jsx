@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import { Button} from'@mui/material'
+import './sliderDiv.css'
 var redirect_uri = "http://127.0.0.1:5500"
 const BACKEND = "http://127.0.0.1:5000/";
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
@@ -13,6 +14,7 @@ function SignInButton(props){
             
         }
     },[]);
+
     function handleRedirect(){
         props.pageState(1);
         let code = getCode();
@@ -38,13 +40,23 @@ function SignInButton(props){
     } 
 
         return (
-            <div style={{width:300, margin:30}}>
-                <Button
+            <div className='logoContainer'>
+                <div className='logoNameDiv'>
+                    <h1 className='logoNameText'>C</h1>
+                    <h1 className='logoNameText'>h</h1>
+                    <h1 className='logoNameText'>i</h1>
+                    <h1 className='logoNameText'>l</h1>
+                    <h1 className='logoNameText'>l</h1>
+                    <h1 className='logoNameText'>i</h1>
+                    <h1 className='logoNameText'>f</h1>
+                    <h1 className='logoNameText'>y</h1>
+                </div>
+                <button
                 onClick={props.onClick}
-                color='secondary'
-                variant='contained'>
+                className = 'calcButton'
+                >
                 Sign In
-                </Button>
+                </button>
             </div>
             
         );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Slider } from '@mui/material';
-import './sliderName.css'
+
 import './sliderDiv.css'
 class MySlider extends Component {
     render() { 
@@ -8,7 +8,7 @@ class MySlider extends Component {
             <div className= 'slider' >
                 <h1 className="sliderName" style={{margin: 10}}>{this.props.name}</h1>
                 <Slider
-                    sx = {{mx: 20, width:75/100}}
+                    sx = {{width:'75%'}}
                     value={this.props.val}
                     onChange={this.props.onChange}
                     valueLabelDisplay='auto'                

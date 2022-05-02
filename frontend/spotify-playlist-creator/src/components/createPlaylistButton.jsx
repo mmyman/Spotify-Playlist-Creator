@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import MySlider from './mySlider';
 import { Button } from '@mui/material';
 import './sliderDiv.css'
-import './sliderName.css'
 import NameEntry from './nameEntry';
 function CreatePlaylistButton(){
     const [danceVal,setDance]=useState(100)
@@ -34,56 +33,58 @@ function CreatePlaylistButton(){
     };
 
 
-    let page;
-
-    if(updatePage === 0){
-        page = <div className='center'>
-        <MySlider name='Danceability'
-        onChange={updateDance}
-        val = {danceVal}
-        />
-        <MySlider name='Speechiness'
-        onChange={updateSpeech}
-        val = {speechVal}
-        />
-        <MySlider name='Instrumentalness'
-        onChange={updateInst}
-        val = {instVal}
-        />
-        <MySlider name='Happiness'
-        onChange={updateHappy}
-        val = {happyVal}
-        />
-        <MySlider name='Energy'
-        onChange={updateEnergy}
-        val = {energyVal}
-        />
-        <Button
-         onClick={() => {
-            let url = 'http://localhost:5000/create-playlist?&maxDance='+danceVal+'&maxSpeech='+speechVal+'&maxInst='+instVal+'&maxHappy='+happyVal+'&maxEnergy='
-                +energyVal+'&auth='+localStorage.getItem('token')+'&name='+textInput;
-            let xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
-            xhr.send();
-            makeUpdate(1);
-         }}
-        color='secondary'
-        variant='contained'>
-        Calculate Playlist
-        </Button>
-        <NameEntry
-        onChange = {handleTextInputChange}
-        val = {textInput}
-        />
-            
-
-    </div>   
-    } else if(updatePage === 1){
-        page = <p className = 'sliderName'>Playlist Created</p>
-    }
-
         return (
-            page
+            <>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat"></link>
+            {updatePage === 0 ? 
+            <div className='center'>
+            <MySlider name='Danceability'
+            onChange={updateDance}
+            val = {danceVal}
+            />
+            <MySlider name='Speechiness'
+            onChange={updateSpeech}
+            val = {speechVal}
+            />
+            <MySlider name='Instrumentalness'
+            onChange={updateInst}
+            val = {instVal}
+            />
+            <MySlider name='Happiness'
+            onChange={updateHappy}
+            val = {happyVal}
+            />
+            <MySlider name='Energy'
+            onChange={updateEnergy}
+            val = {energyVal}
+            />
+            <div className='buttons'>
+                <NameEntry
+                onChange = {handleTextInputChange}
+                val = {textInput}
+                />
+            </div>
+            
+            <div className = 'buttons'>
+            <button onClick={() => {
+                    let url = 'http://localhost:5000/create-playlist?&maxDance='+danceVal+'&maxSpeech='+speechVal+'&maxInst='+instVal+'&maxHappy='+happyVal+'&maxEnergy='
+                        +energyVal+'&auth='+localStorage.getItem('token')+'&name='+textInput;
+                    let xhr = new XMLHttpRequest();
+                    xhr.open("GET", url, true);
+                    xhr.send();
+                    makeUpdate(1);
+                }}
+                className='calcButton'
+            >
+                Calculate Playlist
+            </button>
+            </div>
+            
+    </div> :
+        <p className = 'sliderName'>Playlist Created</p>
+
+            }
+        </>
         );
 }
 

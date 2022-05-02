@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
-
+import './nameEntryStyle.css';
 function NameEntry(props){
 
         return (
             <TextField 
+            className = 'inputRounded'
             id="outlined-basic" 
             label="Name Your Playlist" 
             variant="outlined" 
@@ -12,9 +13,6 @@ function NameEntry(props){
             onChange= {props.onChange}
             color='primary'
             autoComplete='off'
-            style={{
-                backgroundColor: "#181818"
-            }}
             InputProps={{
                 style: {
                     color: "white"
