@@ -1,8 +1,8 @@
 import React, {useEffect } from 'react';
 import { Button} from'@mui/material'
 import './sliderDiv.css'
-var redirect_uri = "http://127.0.0.1:5500"
-const BACKEND = "http://127.0.0.1:5000/";
+var redirect_uri = "https://mmyman.github.io/Spotify-Playlist-Creator/"
+const BACKEND = "https://spotify-playlist-gener.herokuapp.com/";
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
 const TOKEN = "https://accounts.spotify.com/api/token";
 

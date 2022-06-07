@@ -67,7 +67,7 @@ function CreatePlaylistButton(){
             
             <div className = 'buttons'>
             <button onClick={() => {
-                    let url = 'http://localhost:5000/create-playlist?&maxDance='+danceVal+'&maxSpeech='+speechVal+'&maxInst='+instVal+'&maxHappy='+happyVal+'&maxEnergy='
+                    let url = 'https://spotify-playlist-gener.herokuapp.com/create-playlist?&maxDance='+danceVal+'&maxSpeech='+speechVal+'&maxInst='+instVal+'&maxHappy='+happyVal+'&maxEnergy='
                         +energyVal+'&auth='+localStorage.getItem('token')+'&name='+textInput;
                     let xhr = new XMLHttpRequest();
                     xhr.open("GET", url, true);
