@@ -7,7 +7,7 @@ function PageManager(){
 
     const handleSignIn=() =>{
         localStorage.setItem('signIn', 'clicked');
-        window.location.href ="http://127.0.0.1:5000/sign-in";
+        window.location.href ="https://spotify-playlist-gener.herokuapp.com/sign-in";
 
     }
 
