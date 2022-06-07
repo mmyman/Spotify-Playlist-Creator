@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Spotify-Playlist-Creator/static/css/main.67284932.css",
+    "main.js": "/Spotify-Playlist-Creator/static/js/main.b1e089c4.js",
+    "static/js/787.aa90b639.chunk.js": "/Spotify-Playlist-Creator/static/js/787.aa90b639.chunk.js",
+    "static/media/logo.svg": "/Spotify-Playlist-Creator/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Spotify-Playlist-Creator/index.html",
+    "main.67284932.css.map": "/Spotify-Playlist-Creator/static/css/main.67284932.css.map",
+    "main.b1e089c4.js.map": "/Spotify-Playlist-Creator/static/js/main.b1e089c4.js.map",
+    "787.aa90b639.chunk.js.map": "/Spotify-Playlist-Creator/static/js/787.aa90b639.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.67284932.css",
+    "static/js/main.b1e089c4.js"
+  ]
+}
